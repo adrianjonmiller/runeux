@@ -1,0 +1,16 @@
+{
+  "name": "methodic",
+  "version": "0.0.1",
+  "description": "Patch together js functions",
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "@babel/preset-env": "7.6.3",
+    "clone-deep": "4.0.1",
+    "jest": "24.9.0",
+    "type-detect": "4.0.8"
+  }
+}
