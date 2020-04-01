@@ -1,98 +1,50 @@
-import Patch from '../src';
+import RunJs from '../src';
 
-let methods = {
-  method1: () => {
-    return ['test1'];
-  },
-  method2 ({}, payload) {
-    return payload.shift();
-  },
-  method3 ({kill, run}, payload) {
-    kill(() => {
-      console.log('killed')
-    })
-
-    return payload
-  },
-  method4 ({}) {
-    return ['array']
-  },
-  promise1 ({run}, payload) {
-    return new Promise(res => {
-      setTimeout(() => {
-        res(payload)
-      }, 1000)
-    })
-  },
-  run ({run}, payload) {
-    return payload
-  },
-  run2 ({next}) {
-    next('run')
+const lib = new RunJs({
+  'fnTest': function () {
     return 'success'
-  }
-};
+  },
+  'payloadTest': function (_, payload) {
+    return payload
+  },
+  'nextTest': function ({next}) {
+    next('getArrayLength')
+    return [1,2]
+  },
+  'getArrayLength': function (_, payload) {
+    return payload.length
+  },
+  'nextLoop': function ({next}, payload) {
+    if (payload < 3) {
+      payload++;
+      next('nextLoop')
+    }
+    return payload
+  },
+  'nextLoopWithPayload': function ({next}, run_again) {
+    if (run_again) {
+      next('nextLoopWithPayload', false)
+    }
+    return run_again
+  },
+})
 
-let patches = {
-  default: {
-    method: 'method1',
-    type: 'array',
-    async: false,
-    next: 'patch1'
-  },
-  patch1: {
-    method: 'method2',
-    type: 'string',
-    async: false,
-  },
-  kill: {
-    method: 'method3',
-    type: 'string',
-    async: false,
-  },
-  array: {
-    method: 'method1',
-    type: 'array',
-    next: ['patch1', 'patch1'],
-    async: false,
-  },
-  async: {
-    method: 'promise1',
-    type: 'promise',
-    async: true,
-    next: 'async2'
-  },
-  async2: {
-    method: 'promise1',
-    type: 'promise',
-    async: true,
-  },
-};
-
-let app = new Patch({patches, methods});
-
-test('patch', () => {
-  expect(app.patch()).toBe('test1')
+test('Run a function', () => {
+  expect(lib.run('fnTest')).toBe('success');
 });
 
-test('kill', () => {
-  expect(app.patch('kill', 'killed')).toBe('killed')
+test('Pass a payload', () => {
+  expect(lib.run('payloadTest', 'payload')).toBe('payload');
 });
 
-test('array', () => {
-  expect(app.patch('array', null).length).toBe(2)
+test('Next Test', () => {
+  expect(lib.run('nextTest')).toBe(2);
 });
 
-test('async', done => {
-  app.patch('async', 'awesome').then((payload) => {
-    payload === 'awesome' ? done() : null
-  })
+test('Next Loop', () => {
+  expect(lib.run('nextLoop', 0)).toBe(3);
 });
 
-test('run', () => {
-  expect(app.run('run', 'success')).toBe('success')
-});
-
-test('run nested', () => {
-  expect(app.run('run2')).toBe('success')
+test('Next Loop with New Payload', () => {
+  expect(lib.run('nextLoopWithPayload', true)).toBe(false);
 });
