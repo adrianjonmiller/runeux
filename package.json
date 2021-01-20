@@ -1,5 +1,5 @@
 {
-  "name": "methodic",
+  "name": "patches",
   "version": "0.0.1",
   "description": "Patch together js functions",
   "main": "src/index.js",
