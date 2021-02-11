@@ -1,16 +1,24 @@
 {
-  "name": "patches",
+  "name": "carbon",
   "version": "0.0.1",
   "description": "Patch together js functions",
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "webpack --progress --color --mode production --config=./config/webpack.build.js",
+    "compress": "compress=true webpack --progress --color --mode production --config=./config/webpack.build.js"
   },
   "dependencies": {
     "@babel/preset-env": "7.6.3",
     "clone-deep": "4.0.1",
     "jest": "24.9.0",
     "type-detect": "4.0.8"
+  },
+  "devDependencies": {
+    "compression-webpack-plugin": "7.1.2",
+    "path": "0.12.7",
+    "webpack": "5.21.2",
+    "webpack-cli": "4.5.0"
   }
 }

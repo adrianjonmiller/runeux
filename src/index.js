@@ -1,6 +1,3 @@
-import type from 'type-detect';
-import cloneDeep from 'clone-deep';
-
 const uids = [];
 
 function generateUid (len) {
