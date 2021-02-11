@@ -2,3 +2,4 @@ node_modules
 old
 dist
 _old
+yarn-error.log
