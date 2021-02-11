@@ -3,6 +3,7 @@
   "version": "0.0.2",
   "description": "Patch together js functions",
   "main": "dist/index.js",
+  "author": "Code Mill",
   "license": "MIT",
   "scripts": {
     "test": "jest",
@@ -10,19 +11,12 @@
     "build-test": "npx babel src --out-dir dist && yarn test",
     "release-patch": "npm run build-test && npm version patch && npm publish"
   },
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "24.9.0",
     "@babel/cli": "7.12.13",
     "@babel/core": "7.12.13",
     "@babel/preset-env": "7.12.13",
-    "babel-loader": "8.2.2",
-    "clone-deep": "4.0.1",
-    "jest": "24.9.0",
-    "type-detect": "4.0.8"
-  },
-  "devDependencies": {
-    "compression-webpack-plugin": "7.1.2",
-    "path": "0.12.7",
-    "webpack": "5.21.2",
-    "webpack-cli": "4.5.0"
+    "babel-loader": "8.2.2"
   }
 }
