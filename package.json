@@ -1,6 +1,6 @@
 {
   "name": "runeux",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Patch together js functions",
   "main": "dist/index.js",
   "license": "MIT",
