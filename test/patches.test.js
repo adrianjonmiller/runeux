@@ -1,6 +1,6 @@
-import RunJs from '../src';
+import Runeux from '../dist';
 
-const lib = new RunJs({
+const lib = new Runeux({
   'fnTest': function () {
     return 'success'
   },

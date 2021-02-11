@@ -1,12 +1,14 @@
 {
-  "name": "threader",
+  "name": "runeux",
   "version": "0.0.1",
   "description": "Patch together js functions",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "build": "npx babel src --out-dir dist"
+    "build": "npx babel src --out-dir dist",
+    "build-test": "npx babel src --out-dir dist && yarn test",
+    "release-patch": "npm run build-test && npm version patch && npm publish"
   },
   "dependencies": {
     "@babel/cli": "7.12.13",
