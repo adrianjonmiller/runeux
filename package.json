@@ -1,16 +1,18 @@
 {
-  "name": "carbon",
+  "name": "threader",
   "version": "0.0.1",
   "description": "Patch together js functions",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "build": "webpack --progress --color --mode production --config=./config/webpack.build.js",
-    "compress": "compress=true webpack --progress --color --mode production --config=./config/webpack.build.js"
+    "build": "npx babel src --out-dir dist"
   },
   "dependencies": {
-    "@babel/preset-env": "7.6.3",
+    "@babel/cli": "7.12.13",
+    "@babel/core": "7.12.13",
+    "@babel/preset-env": "7.12.13",
+    "babel-loader": "8.2.2",
     "clone-deep": "4.0.1",
     "jest": "24.9.0",
     "type-detect": "4.0.8"
