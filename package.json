@@ -18,5 +18,21 @@
     "@babel/core": "7.12.13",
     "@babel/preset-env": "7.12.13",
     "babel-loader": "8.2.2"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrianjonmiller/runeux.git"
+  },
+  "keywords": [
+    "trampoline",
+    "functional",
+    "js"
+  ],
+  "bugs": {
+    "url": "https://github.com/adrianjonmiller/runeux/issues"
+  },
+  "homepage": "https://github.com/adrianjonmiller/runeux#readme"
 }
